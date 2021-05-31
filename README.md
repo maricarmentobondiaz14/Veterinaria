@@ -1,0 +1,1 @@
+Es una página web de una veterinaria  para  la administración  y que un usuario pueda agendar citas  como cliente y como administrador revisar las citas, agregar productos, servicios, como también como cliente puede agregar a sus mascotas. Esta hecho en python junto django ,utilizando la base de datos de MySQL .
