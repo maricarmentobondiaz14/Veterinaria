@@ -1,0 +1,68 @@
+CREATE TABLE usuarios 
+(usuario    	VARCHAR(12)	NOT NULL 	        COMMENT 'Username para acceder al sistema'
+,nombre    	VARCHAR(12) 	NOT NULL 		COMMENT 'Nombre del usuario'
+,password	VARCHAR(12) 	NOT NULL 		COMMENT 'contraseña del usuario' 
+,tipoUsuario    INT(1) 		DEFAULT 1 		COMMENT 'Tipo de usuario. 1:Administrador, 0:Cliente'
+,direccion 	VARCHAR(30)     NOT NULL	        COMMENT 'Dirección del usuario'
+,ciudad		VARCHAR(20) 	NOT NULL 		COMMENT 'Ciudad de donde es el usuario'
+,codigoPostal	INT(5) 		NOT NULL 		COMMENT 'Código Postal del usuario'
+,telefono	VARCHAR(10) 	NOT NULL	        COMMENT 'Teléfono del usuario'
+,correo		VARCHAR(30) 	NOT NULL 		COMMENT 'Correo del usuario'
+,status         INT(1) 		DEFAULT 1 		COMMENT 'Estado del usuario. 1:Activo, 0:Inactivo'
+,PRIMARY KEY usuarios_pk (usuario)
+);
+ALTER TABLE usuarios COMMENT ='Catálogo de usuarios del sistema';
+CREATE TABLE mascotas 
+(id_mascota    	INT(11)		NOT NULL  AUTO_INCREMENT COMMENT 'Identificador de la mascota'
+,nombre         VARCHAR(12)     NOT NULL                 COMMENT 'Nombre de la mascota'
+,usuario    	VARCHAR(12)	NOT NULL 	         COMMENT 'Username del propietario de la mascota'
+,tipo_animal	VARCHAR(12) 	NOT NULL 		 COMMENT 'tipo de animal' 
+,raza           VARCHAR(20)     NULL 		         COMMENT 'Raza de la mascota'
+,genero 	VARCHAR(30)     NOT NULL   COMMENT 'Genero de la mascota'
+,esterilizado   INT(1) 	        DEFAULT 1 		 COMMENT 'Esterilizado. 1:Si, 0:No'
+,longitud	DECIMAL(10,5)   NOT NULL 		 COMMENT 'Longitud de la mascota'
+,peso	        DECIMAL(10,5) 	NOT NULL	         COMMENT 'Peso de la mascota'
+,vacunas	VARCHAR(30) 	NOT NULL 		 COMMENT 'Vacunas de la mascota'
+,imagen         VARCHAR(1000)   NULL                     COMMENT 'Imagen de la mascota'   
+,PRIMARY KEY mascota_pk (id_mascota)
+,CONSTRAINT FOREIGN KEY mas_us_fk (usuario) REFERENCES usuarios (usuario)
+);
+ALTER TABLE mascotas COMMENT ='Catálogo de mascotas del sistema';
+CREATE TABLE productos 
+(id_producto    INT(11)		NOT NULL AUTO_INCREMENT	COMMENT 'Identificador del producto'
+,referencia    	VARCHAR(10) 	NOT NULL 		COMMENT 'Referencia del producto'
+,descripcion	VARCHAR(30) 	NOT NULL 		COMMENT 'Descripción del producto' 
+,marca          VARCHAR(10)     NOT NULL 		COMMENT 'Marca del producto'
+,precio 	DECIMAL(10,2)   NOT NULL                COMMENT 'Precio del producto'
+,imagen         VARCHAR(1000)   NULL                    COMMENT 'Imagen del producto'   
+,PRIMARY KEY producto_pk (id_producto)
+);
+ALTER TABLE productos COMMENT ='Catálogo de productos del sistema';
+CREATE TABLE servicios
+(id_servicio     INT(11)	NOT NULL  AUTO_INCREMENT	COMMENT 'Identificador del servicio'
+,nombre   	 VARCHAR(30) 	NOT NULL 		        COMMENT 'Nombre del servicio'
+,precioxservicio DECIMAL(10,2) 	NOT NULL 		        COMMENT 'Precio del servicio' 
+,descripcion     VARCHAR(4000)    NOT NULL 		        COMMENT 'Descripción del servicio'
+,imagen          VARCHAR(2000)    NULL                            COMMENT 'Imagen del producto'   
+,PRIMARY KEY servicio_pk (id_servicio)
+);
+ALTER TABLE servicios COMMENT ='Catálogo de servicios del sistema';
+CREATE TABLE citas 
+(id_cita            INT(11)	  NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la cita'
+,id_servicio        INT(11) 	  NOT NULL 		  COMMENT 'Identificador del servicio'
+,usuario    	    VARCHAR(12)	  NOT NULL 	          COMMENT 'Username del usuario'
+,id_mascota	    INT(11) 	  NOT NULL 		  COMMENT 'Identificador de la mascota' 
+,fecha              DATE          NOT NULL                COMMENT 'Fecha de venta'
+,PRIMARY KEY cita_pk (id_cita)
+);
+ALTER TABLE citas COMMENT ='Catálogo de citas del sistema';
+ALTER TABLE citas
+  ADD CONSTRAINT cita_servicio_fk 	FOREIGN KEY (id_servicio) REFERENCES servicios (idservicio),
+  ADD CONSTRAINT cita_usuario_fk	FOREIGN KEY (usuario) 	  REFERENCES usuarios (usuario),
+  ADD CONSTRAINT cita_mascota_fk	FOREIGN KEY (id_mascota)  REFERENCES mascotas (id_mascota);
+
+CREATE TABLE django_session  
+(session_key 	VARCHAR(40) NOT NULL PRIMARY KEY
+,session_data 	TEXT 		NOT NULL
+,expire_date 	DATETIME 	NOT NULL
+);
