@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+	<head>
+		{% block head %}
+        {% endblock %}
+		<meta charset="utf-8">
+		<title>Veterinaria</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="{% static '/css/estilos_administrador.css' %}?version= Math.random();">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="shortcut icon" href="{% static 'imagenes/logo.jpg' %}">
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	</head>
+
+	<body>
+	    <header>
+			<div class="row contenedor">
+
+				<div class="col-xs-12 col-md-12">
+					 <div class="row">
+                        <div class="col-xs-12">
+							<div class="menu-superior">
+								<div class="col-xs-4 imagen-cabecera">
+								 	<img src="https://i.pinimg.com/originals/f6/4a/95/f64a95a42cd5240324e3713a7ecf1aa4.jpg"   alt="">
+								</div>
+								<div class="col-xs-8 text-right texto-imagen">
+									<p>Clínica Veterinaria Sabueso,  para consertir y cuidar de tu mascota.
+										<br><span style="font-family:small-caption; font-size:15px;">Horarios: 7:00 am-7:00pm Lunes-Sabado<br>Servicio a domicilio</span></p>
+									<p><i class="glyphicon glyphicon-plus-sign"></i><span style="font-size:15px"> Urgencias: 2711102149</span></p>
+								</div>
+							</div>
+
+							<div class="menu">
+								<nav>
+									<ul>
+										<li><a href="{%url 'url_inicioAdministrador'%}">Inicio</a></li>
+										<li><a href="{%url 'url_usuarios_list'%}">Usuarios</a></li>
+										<li><a href="{%url 'url_citas_list'%}">Citas</a></li>
+										<li><a href="{%url 'url_productos_list'%}">Productos</a></li>
+										<li><a href="{%url 'url_servicios_list'%}">Servicios</a></li>
+										<li><a href="{%url 'url_salir'%}">Cerrar Sesión</a></li>
+
+
+									</ul>
+
+								</nav>
+							</div>
+						</div>
+					 </div>
+				</div>
+			</div>
+		</header>
+
+		<script src="{% static 'js/menu_scroll.js' %}?version=Math.random();"></script>
+
+	 	{% block contenido %}
+        {% endblock %}
+	</body>
+<html>

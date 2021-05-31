@@ -1,0 +1,107 @@
+
+body {
+    background-color: #8cbfff;
+}
+
+#login{
+    width: 30%;
+    background-color: #3498db;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow:0px 4px 3px rgba(0,0,0,0.5);
+
+}
+.input-container2{
+  width:30%;
+  height:80px;
+
+  margin-top:10px;
+  border-radius:90%;
+  background-color:#8cbfff;
+}
+.input-container2 i{
+color: white;
+font-size:60px;
+
+}
+
+.input-container {
+   position: relative;
+   width:100%;
+   margin-bottom: 10px;
+
+}
+.input-container i{
+position: absolute;
+top: 8px;
+padding: 9px 8px;
+color: #034C78;
+}
+
+#usuario{
+            width: 100%;
+            padding-left: 30px;
+             margin: 8px 0;
+             display: inline-block;
+             border: 1px solid #ccc;
+             border-radius: 10px;
+             box-sizing: border-box;
+}
+
+#password1{
+            width: 100%;
+             padding-left: 30px;
+             margin: 8px 0;
+             display: inline-block;
+             border: 1px solid #ccc;
+             border-radius: 10px;
+             box-sizing: border-box;
+}
+
+
+.input-form {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+ }
+
+.center{
+     text-align: center;
+}
+
+.input-boton {
+  width: 90px;
+  background-color: #0070fd;
+  color: white;
+  padding: 7px 10px;
+  margin: 8px 10px 10px 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.input-boton:hover {
+  background-color: #2679AB;
+}
+#regresa {
+  width: 90px;
+  background-color: #0070fd;
+  color: white;
+  padding: 7px 10px;
+  margin: 8px 10px 10px 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+}
+#regresa:hover {
+  background-color: #2679AB;
+}
+.btn:hover {
+  background-color: #2679AB;
+}

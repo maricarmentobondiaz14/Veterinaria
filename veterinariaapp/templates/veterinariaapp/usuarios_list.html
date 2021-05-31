@@ -1,0 +1,96 @@
+{% extends 'veterinariaapp/baseAdministrador.html' %}
+{% load static %}
+{%block contenido %}
+<div class="container" id="listado">
+	<div class="col-md-12">
+			<div class="form-group col-md-10">
+				<h2>Usuarios</h2>
+        	</div>
+		    <div class="form-group col-md-2">
+				<center>
+					<label>Agregar Usuario</label><br>
+					<div class="contenidos">
+					    <a class="btn btn-default" href="{% url 'url_usuarios_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
+					</div>
+				</center>
+			</div>
+	</div>
+
+    <div class="form-group col-md-12">
+		{% if messages%}
+			{% for mensaje in messages %}
+				{% if mensaje.tags == 'error' %}
+					<div class="alert alert-danger fade in alert-dismissible show">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true" style="font-size:20px">&times;</span>
+						</button>
+						<strong>Error: </strong> {{mensaje}}
+					</div>
+				{% endif %}
+				{% if mensaje.tags == 'success' %}
+					<div class="alert alert-success fade in alert-dismissible show">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true" style="font-size:20px">&times;</span>
+						</button>
+						{{mensaje}}
+					</div>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</div>
+	<div class="col-md-10 tabla">
+	<table id="tablausuarios" class="table table-responsive table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Editar</th>
+				<th>Eliminar</th>
+				<th>Admr.</th>
+				<th>Usuario</th>
+				<th>Nombre</th>
+				<th>Dirección</th>
+				<th>Ciudad</th>
+				<th>Telefono</th>
+				<th>Correo</th>
+			</tr>
+		</thead>
+		<tbody>
+
+        {% for usu in vwUsuarios %}
+			<tr>
+				<td class="contenidos"><a class="glyphicon glyphicon-pencil" href="{% url 'url_usuarios_edit' pk=usu.pk %}" title="Editar"></a></td>
+				<td class="contenidos"><a class="glyphicon glyphicon-remove" onclick="confirmaEliminar('{{usu.pk }}/eliminar');" title="Eliminar"></a></td>
+				{% if usu.tipousuario == 1 %}
+				      <td>Sí</td>
+				{% else %}
+				      <td>No</td>
+				{% endif %}
+                <td>{{ usu.usuario}}</td>
+				<td>{{ usu.nombre}}</td>
+				<td>{{ usu.direccion}}</td>
+				<td>{{ usu.ciudad}}</td>
+				<td>{{ usu.telefono}}</td>
+				<td>{{ usu.correo}}</td>
+
+			</tr>
+
+        {% endfor %}
+		</tbody>
+
+	</table>
+
+	</div>
+
+</div>
+
+	<!-- JQUERY -->
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+	<!-- DATATABLES -->
+	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+	<!-- ALERTAS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	<!-- JAVASCRIPT -->
+	<script src="{% static 'js/alertas.js' %}?version=Math.random();"></script>
+    <script src="{% static 'js/configuracionDatatables.js' %}?version=Math.random();"></script>
+{% endblock %}

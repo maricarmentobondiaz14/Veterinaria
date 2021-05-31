@@ -1,0 +1,23 @@
+{% extends 'veterinariaapp/baseCliente.html' %}
+{% load static %}
+{%block contenido %}
+<div class="container" id="informacion">
+	<div class="col-md-12">
+		<div class="form-row ">
+			<div class="form-group col-md-6 imagen-admin">
+                <center>
+                    <img src="{% static 'imagenes/cliente.jpg' %}" alt="">
+                </center>
+        	</div>
+			<div class="form-group col-md-6 texto-admin">
+				<div class="form-group col-md-12">
+					 <p>Bienvenido, en esta sección
+						 podrás agendar tus citas a los servicios disponibles, así como también agregar a tus mascotas.
+					 </p>
+				</div>
+		   </div>
+
+    	</div>
+	</div>
+</div>
+{% endblock %}

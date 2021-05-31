@@ -1,0 +1,156 @@
+{% extends 'veterinariaapp/baseAdministrador.html' %}
+{% load static %}
+{%block contenido %}
+<div class="container" id="formulario">
+	{% if messages %}
+		{% for mensaje in messages%}
+			<h2>{{ mensaje }}</h2>
+		{% endfor %}
+	{% endif %}
+
+	<form method="POST" id="usuariosform">
+        {% csrf_token %}
+
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-5">
+					<label>Usuario</label>
+					{{ form.usuario }}
+				</div>
+                <div class="form-group col-md-5">
+                    <label>Nombre</label>
+					{{ form.nombre }}
+                </div>
+                 <div class="form-group col-md-2">
+					 {% if usuario_vw %}
+							{% if usuario_vw.status == 1%}
+								<input type="hidden" name="status" id="status" value="1">
+								<input type="checkbox" name="status_visible" id="statusVisible" checked>
+							{% else %}
+								<input type="hidden" name="status" id="status" value="0">
+								<input type="checkbox" name="status_visible"  id="statusVisible">
+							{% endif %}
+                     {% else %}
+							<input type="hidden" name="status" id="status" value="1">
+							<input type="checkbox" name="status_visible" id="statusVisible" checked>
+                     {% endif %}
+                     <label for="statusVisible">Activo</label>
+                 </div>
+            </div>
+        </div>
+
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-5">
+                    <label>Contraseña</label>
+                    {% if usuario_vw %}
+                          <input type="password" class="input-form" name="password" id="password"value="{{usuario_vw.password}}" placeholder="Ingrese una Contraseña" required>
+                    {% else %}
+                          <input type="password" class="input-form" name="password" id="password" placeholder="Ingrese una Contraseña" required>
+                    {% endif %}
+                </div>
+				<div class="form-group col-md-5">
+                    <label>Confirmación</label>
+                   {% if usuario_vw %}
+                          <input type="password" class="input-form" name="confirmacion" id="confirmacion" value="{{usuario_vw.password}}" placeholder="Confirme la Contraseña" required>
+                    {% else %}
+					      <input type="password" class="input-form" name="confirmacion" id="confirmacion" placeholder="Confirme la Contraseña" required>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+         <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-5">
+                    <label>Tipo de usuario</label>
+                     {% if usuario_vw %}
+                         {% if usuario_vw.tipousuario is None  %}
+                              <select name="tipousuario" id="tipousuario" class="input-form" required>
+                                <option value="" selected="selected">----------------------------------</option>
+                                <option value="1">Administrador</option>
+                                <option value="0">Cliente</option>
+                              </select>
+                         {% else %}
+						      <select name="tipousuario" id="tipousuario" class="input-form" required>
+                                  {% if usuario_vw.tipousuario == 1 %}
+                                       <option value="{{usuario_vw.tipousuario}} " selected="selected">Administrador</option>
+                                       <option value="0">Cliente</option>
+                                  {% elif usuario_vw.tipousuario == 0 %}
+                                       <option value="1">Administrador</option>
+                                       <option value="{{usuario_vw.tipousuario}} " selected="selected">Cliente</option>
+                                  {%endif%}
+                              </select>
+                         {% endif %}
+				    {% else %}
+                         <select name="tipousuario" id="tipousuario" class="input-form" required>
+                            <option value="" selected="selected">----------------------------------</option>
+                            <option value="1">Administrador</option>
+                            <option value="0">Cliente</option>
+                         </select>
+				    {% endif %}
+                </div>
+				<div class="form-group col-md-5">
+                    <label>Dirección</label>
+					{{ form.direccion }}
+				</div>
+            </div>
+        </div>
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-5">
+                    <label>Ciudad</label>
+					{{ form.ciudad }}
+                </div>
+				<div class="form-group col-md-5">
+                    <label>Código Postal</label>
+					{{ form.codigopostal }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-5">
+                    <label>Télefono</label>
+					{{ form.telefono }}
+                </div>
+				<div class="form-group col-md-5">
+                    <label>Correo</label>
+					{{ form.correo }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<center>
+						<a class="btn " id="regresa" href="{%url 'url_usuarios_list'%}">Regresar</a>
+						<button type="submit" class="input-boton center" onclick="funciones_validarpassword()">Guardar</button>
+                </center>
+            </div>
+        </div>
+
+
+    </form>
+
+
+
+</div>
+
+
+
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!-- DATATABLES -->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+
+	<!-- ALERTAS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+    <!-- JAVASCRIPT -->
+    <script src="{% static 'js/alertas.js' %}?version=Math.random();"></script>
+    <script src="{% static 'js/configuracionDatatables.js' %}?version2=Math.random();"></script>
+	<script src="{% static 'js/funciones.js' %}?version3=Math.random();"></script>
+
+{% endblock %}

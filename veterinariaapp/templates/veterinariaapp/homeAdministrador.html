@@ -1,0 +1,24 @@
+{% extends 'veterinariaapp/baseAdministrador.html' %}
+{% load static %}
+{%block contenido %}
+<div class="container" id="informacion">
+	<div class="col-md-12">
+		<div class="form-row ">
+			<div class="form-group col-md-6 imagen-admin">
+                <center>
+                    <img src="{% static 'imagenes/admi.jpg' %}" alt="">
+                </center>
+        	</div>
+			<div class="form-group col-md-6 texto-admin">
+				<div class="form-group col-md-12">
+					 <p>Bienvenido administrador, en esta sección
+						 podrás agregar, modificar o eliminar usuarios, productos y así como supervisar las citas
+						 que agendan los clientes estás puedes eliminarlas más no agregar nuevas o modificarlas.
+					 </p>
+				</div>
+		   </div>
+
+    	</div>
+	</div>
+</div>
+{% endblock %}

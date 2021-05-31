@@ -1,0 +1,48 @@
+{% extends 'veterinariaapp/base.html' %}
+{% load static %}
+{%block contenido %}
+<div class="container" id="informacion">
+    <div class="col-md-12">
+		<div class="form-row">
+			<div class="form-group col-md-12">
+                <center>
+                    <img src="{% static 'imagenes/mascotas.jpg' %}"  width="100%" height="500"  alt="">
+                </center>
+        	</div>
+    	</div>
+	</div>
+	 <div class="col-md-12">
+			<h2>Quiénes somos</h2>
+	 </div>
+	 <div class="form-group col-md-12">
+		 <p style="text-align:justify">Nosotros somos una clínica experimentada en poder brindar un buen servicio tu mascota, en todo lo que se es posible.
+			 Equipamiento moderno, trato profesional y compromiso personal, todo esto define a la perfección nuestra veterinaria.
+			 Lo más importante para nosotros es el bienestar de los animales.
+			 Para conseguir un diagnóstico óptimo y un tratamiento efectivo, conversamos detenidamente con el dueño y nos tomamos el tiempo necesario para investigar a fondo todo lo referente a su mascota.
+		 </p>
+	 </div>
+	<div class="col-md-12">
+			<h2>Ubicación</h2>
+	</div>
+	<div class="col-md-12 mapa">
+		<div id="map" style="height:300px;">
+
+		</div>
+	</div>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXk9urWADPVzYlg8Yo80gO4Ls0DUrJs70&callback=initMap&libraries=&v=weekly" async></script>
+
+	<script>
+		  let map;
+
+		  function initMap() {
+			map = new google.maps.Map(document.getElementById("map"), {
+			  center: { lat: -34.397, lng: 150.644 },
+			  zoom: 8,
+			});
+		  }
+	</script>
+
+
+
+</div>
+{% endblock %}

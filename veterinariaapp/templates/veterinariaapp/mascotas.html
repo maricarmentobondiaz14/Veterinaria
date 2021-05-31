@@ -1,0 +1,79 @@
+{% extends 'veterinariaapp/base.html' %}
+{% load static %}
+{%block contenido %}
+<div class="container" id="formulario">
+	<div class="col-md-12">
+			<div class="form-group col-md-10">
+				<h2>Animales para tener en casa</h2>
+        	</div>
+	</div>
+
+		<div class="form-row ">
+			<div class="form-group col-md-12 consejo-imagen">
+				<div class="form-group col-md-3">
+					<img src="https://www.nombresdeperros.eu/wp-content/uploads/2020/12/razas-de-perros-pequenos-1280x720.jpg">
+				</div>
+				<div class="form-group col-md-9">
+                    <label>Perros</label>
+					<p>Hay perros de todos los tamaños y personalidades que esperan ser adoptados y tienen la oportunidad de recibir el amor de una familia.</p>
+				</div>
+			</div>
+		</div>
+		<div class="form-row ">
+			<div class="form-group col-md-12 consejo-imagen">
+				<div class="form-group col-md-3">
+					<img src="https://i.pinimg.com/originals/2f/57/b5/2f57b5ef82d8024b39beec08a15f5a0d.jpg">
+				</div>
+				<div class="form-group col-md-9">
+                    <label>Gatos</label>
+					<p>Los gatos son uno de los mejores animales para tener en casa gracias a su naturaleza más independiente y la facilidad de adaptación en entornos pequeños.
+                        Y debido a que cada gato tiene una personalidad propia, puedes adoptar un gatito que se adapte a tu estilo de vida y educarlo para que respete las normas de tu hogar.</p>
+				</div>
+			</div>
+		</div>
+        <div class="form-row ">
+			<div class="form-group col-md-12 consejo-imagen">
+				<div class="form-group col-md-3">
+					<img src="https://estaticos.muyinteresante.es/media/cache/1140x_thumb/uploads/images/gallery/593938475bafe8ad873c986b/conejo-orejas-caidas-jardin_1.jpg">
+				</div>
+				<div class="form-group col-md-9">
+					<label>Conejo</label>
+                    <p>Los conejos también pueden ser excelentes animales para tener en casa, pero debes elegir una raza de conejo que se adapte al espacio disponible en tu hogar.
+                        Los conejos de toy o enanos pueden ser una excelente opción para quienes viven en pisos pequeños debido a su diminuto tamaño.</p>
+				</div>
+			</div>
+		</div>
+        <div class="form-row ">
+			<div class="form-group col-md-12 consejo-imagen">
+				<div class="form-group col-md-3">
+					<img src="https://www.hogarmania.com/archivos/201705/mascotas-tortugas-agua-cuidados-XxXx80.jpg">
+				</div>
+				<div class="form-group col-md-9">
+					<label>Tortuga</label>
+					<p>Debido a su comportamiento tranquilo, las tortugas también pueden ser excelentes mascotas para tener en casa, pero nuevamente será importante elegir una especie que sea apropiada para el espacio y el tiempo que planeas dedicar a tu nuevo compañero. Primero, investiga cuál es el tamaño de una tortuga en la edad adulta,
+                        ya que algunas especies pueden medir hasta 20 veces más cuando son adultas que durante sus primeros meses de vida.</p>
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!-- DATATABLES -->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+
+	<!-- ALERTAS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+    <!-- JAVASCRIPT -->
+    <script src="{% static 'js/alertas.js' %}?version=Math.random();"></script>
+    <script src="{% static 'js/configuracionDatatables.js' %}?version2=Math.random();"></script>
+	<script src="{% static 'js/funciones.js' %}?version3=Math.random();"></script>
+
+{% endblock %}

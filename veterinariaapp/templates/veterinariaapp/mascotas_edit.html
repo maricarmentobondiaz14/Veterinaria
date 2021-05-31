@@ -1,0 +1,193 @@
+{% extends 'veterinariaapp/baseCliente.html' %}
+{% load static %}
+{%block contenido %}
+<div class="container" id="formulario">
+	{% if messages %}
+		{% for mensaje in messages%}
+			<h2>{{ mensaje }}</h2>
+		{% endfor %}
+	{% endif %}
+
+	<form method="POST" id="mascotasform">
+        {% csrf_token %}
+
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-6">
+                     <label>Nombre</label>
+                    {% if mascota %}
+                          <input type="text" class="input-form" name="nombre" id="nombre"value="{{mascota.nombre}}" placeholder="Ingrese el nombre de la mascota" required>
+                    {% else %}
+                          <input type="text" class="input-form" name="nombre" id="nombre" placeholder="Ingrese el nombre de la mascota" required>
+                    {% endif %}
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Usuario</label>
+                    <select name="usuario" id="usuario" class="input-form" required>
+                            <option value="" selected="selected">----------------------------------</option>
+                            {% for usu in usuarios %}
+                            <option value="{{usu.usuario}}">{{usu.usuario}}</option>
+                            {% endfor %}
+                    </select>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-6">
+					<label>Tipo de animal</label>
+                     {% if mascota %}
+                          <input type="text" class="input-form" name="tipo_animal" id="tipo_animal"value="{{mascota.tipo_animal}}" required>
+                    {% else %}
+                          <input type="text" class="input-form" name="tipo_animal" id="tipo_animal"  required>
+                    {% endif %}
+				</div>
+                <div class="form-group col-md-6">
+					<label>Raza</label>
+                    {% if mascota %}
+                          <input type="text" class="input-form" name="raza" id="raza" value="{{mascota.raza}}"  required>
+                    {% else %}
+                          <input type="text" class="input-form" name="raza" id="raza"  required>
+                    {% endif %}
+				</div>
+            </div>
+        </div>
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-6">
+					<label>Genero</label>
+                    {% if mascota %}
+                         {% if mascota.genero is None  %}
+                              <select name="genero" id="genero" class="input-form" required>
+                                <option value="" selected="selected">----------------------------------</option>
+                                <option value="masculino">masculino</option>
+                                <option value="femenino">femenino</option>
+                              </select>
+                         {% else %}
+						      <select name="genero" id="genero" class="input-form" required>
+                                  {% if mascota.genero == 'masculino' %}
+                                       <option value="{{mascota.genero }}" selected="selected">masculino</option>
+                                       <option value="femenino">femenino</option>
+                                  {% elif mascota.genero == 'femenino' %}
+                                       <option value="masculino">masculino</option>
+                                       <option value="{{mascota.genero}} " selected="selected">femenino</option>
+                                  {%endif%}
+                              </select>
+                         {% endif %}
+				    {% else %}
+                         <select name="genero" id="genero" class="input-form" required>
+                            <option value="" selected="selected">----------------------------------</option>
+                            <option value="masculino">masculino</option>
+                            <option value="femenino">femenino</option>
+                         </select>
+				    {% endif %}
+				</div>
+                <div class="form-group col-md-6">
+					<label>Esterilizado</label>
+                    {% if mascota %}
+                         {% if mascota.esterilizado is None  %}
+                              <select name="esterilizado" id="esterilizado" class="input-form" required>
+                                <option value="" selected="selected">----------------------------------</option>
+                                <option value="1">Si</option>
+                                <option value="0">No</option>
+                              </select>
+                         {% else %}
+						      <select name="esterilizado" id="esterilizado" class="input-form" required>
+                                  {% if mascota.esterilizado == 1 %}
+                                       <option value="{{mascota.esterilizado}} " selected="selected">Si</option>
+                                       <option value="0">No</option>
+                                  {% elif mascota.esterilizado == 0 %}
+                                       <option value="1">Si</option>
+                                       <option value="{{mascota.esterilizado}} " selected="selected">No</option>
+                                  {%endif%}
+                              </select>
+                         {% endif %}
+				    {% else %}
+                         <select name="esterilizado" id="esterilizado" class="input-form" required>
+                            <option value="" selected="selected">----------------------------------</option>
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
+                         </select>
+				    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-6">
+					<label>Longitud</label>
+                     {% if mascota %}
+                          <input type="text" class="input-form" name="longitud" id="longitud"value="{{mascota.longitud}}"  required>
+                    {% else %}
+                          <input type="text" class="input-form" name="longitud" id="longitud"  required>
+                    {% endif %}
+				</div>
+                <div class="form-group col-md-6">
+					<label>Peso</label>
+                    {% if mascota %}
+                          <input type="text" class="input-form" name="peso" id="peso" value="{{mascota.peso}}"  required>
+                    {% else %}
+                          <input type="text" class="input-form" name="peso" id="peso"  required>
+                    {% endif %}
+				</div>
+            </div>
+        </div>
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-6">
+					<label>Vacunas</label>
+                    {% if mascota %}
+                          <input type="text" class="input-form" name="vacunas" id="vacunas"value="{{mascota.vacunas}}"  required>
+                    {% else %}
+                          <input type="text" class="input-form" name="vacunas" id="vacunas"  required>
+                    {% endif %}
+				</div>
+                <div class="form-group col-md-6">
+					<label>Imagen</label>
+                    {% if mascota %}
+                          <input type="text" class="input-form" name="imagen" id="imagen" value="{{mascota.imagen}}"  required>
+                    {% else %}
+                          <input type="text" class="input-form" name="imagen" id="imagen"  required>
+                    {% endif %}
+				</div>
+            </div>
+        </div>
+
+
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<center>
+						<a class="btn " id="regresa" href="{%url 'url_mascotas_list'%}">Regresar</a>
+						<button type="submit" class="input-boton center">Guardar</button>
+                </center>
+            </div>
+        </div>
+
+
+    </form>
+
+
+
+</div>
+
+
+
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!-- DATATABLES -->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+
+	<!-- ALERTAS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+    <!-- JAVASCRIPT -->
+    <script src="{% static 'js/alertas.js' %}?version=Math.random();"></script>
+    <script src="{% static 'js/configuracionDatatables.js' %}?version2=Math.random();"></script>
+	<script src="{% static 'js/funciones.js' %}?version3=Math.random();"></script>
+
+{% endblock %}

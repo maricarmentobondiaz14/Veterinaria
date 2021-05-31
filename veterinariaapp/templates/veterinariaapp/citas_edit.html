@@ -1,0 +1,92 @@
+{% extends 'veterinariaapp/baseCliente.html' %}
+{% load static %}
+{%block contenido %}
+<div class="container" id="formulario">
+	{% if messages %}
+		{% for mensaje in messages%}
+			<h2>{{ mensaje }}</h2>
+		{% endfor %}
+	{% endif %}
+
+	<form method="POST" id="citasform">
+        {% csrf_token %}
+
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-6">
+                     <label>Servicio</label>
+                    <select name="id_servicio" id="id_servicio" class="input-form" required>
+                            <option value="" selected="selected">----------------------------------</option>
+                            {% for ser in servicios %}
+                            <option value="{{ser.id_servicio}}">{{ser.nombre}}</option>
+                            {% endfor %}
+                    </select>
+
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Usuario</label>
+                    <select name="usuario" id="usuario" class="input-form" required>
+                            <option value="" selected="selected">----------------------------------</option>
+                            {% for usu in usuarios %}
+                            <option value="{{usu.usuario}}">{{usu.usuario}}</option>
+                            {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<div class="form-group col-md-6">
+                     <label>Mascotas</label>
+                    <select name="id_mascota" id="id_mascota" class="input-form" required>
+                            <option value="" selected="selected">----------------------------------</option>
+                            {% for mas in mascotas %}
+                            <option value="{{mas.id_mascota}}">{{mas.nombre}}</option>
+                            {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Fecha</label>
+	                  {{form.fecha}}
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="form-row ">
+			<div class="form-group col-md-12">
+				<center>
+						<a class="btn " id="regresa" href="{%url 'url_mascotas_list'%}">Regresar</a>
+						<button type="submit" class="input-boton center">Guardar</button>
+                </center>
+            </div>
+        </div>
+
+
+    </form>
+
+
+
+</div>
+
+
+
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!-- DATATABLES -->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+
+	<!-- ALERTAS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+    <!-- JAVASCRIPT -->
+    <script src="{% static 'js/alertas.js' %}?version=Math.random();"></script>
+    <script src="{% static 'js/configuracionDatatables.js' %}?version2=Math.random();"></script>
+	<script src="{% static 'js/funciones.js' %}?version3=Math.random();"></script>
+
+{% endblock %}
